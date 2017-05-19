@@ -1,0 +1,8 @@
+<parameters>
+  <corpus>
+    <path>./twitter_corpus</path>
+    <class>trectext</class>
+  </corpus>
+  <memory>2G</memory>
+  <index>./index</index>
+</parameters>
