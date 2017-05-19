@@ -3,17 +3,25 @@ We are a team of graduate students from UCSC. In this project, we are focussing 
 
 # contents added by Lixue
 1. INDRI-5.0 install commands:
+
 ./configure
+
 make
+
 make install
+
 2. Beautiful Soup 3.2 for python 2.7:
-pip install beautifulsoup
+
+pip install beautifulsoup\n
 
 3. first in the root directory run:
+
 IndriBuildIndex query_parameter_file
+
 will generate an index folder which would be used as twitter data indexing.
 
 4. please convert twitter data into trectext format as sample in twitter_corpus.
+
 warning: ***.trectext files must be unix format.
 
 
