@@ -3,11 +3,10 @@ import re
 import os
 
 def preprocess(Data):
-    # fileread = pandas.read_csv(Data)
     fileread = pandas.read_csv(Data, error_bad_lines=False)
     cleanTweets = []
     x = fileread[['text']].values.tolist()
-    tweetIds = fileread[['tweet_id']].values.tolist()
+    tweetIds = fileread['tweet_id'].values.tolist()
 
     # Regex to remove HTML tags
     HTMLreg = re.compile(r'<[^>]+>')
