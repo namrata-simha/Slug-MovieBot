@@ -12,16 +12,16 @@ make install
 
 2. Beautiful Soup 3.2 for python 2.7:
 
-pip install beautifulsoup\n
+pip install beautifulsoup
 
-3. first in the root directory run:
+3. In the Slug-MovieBot directory run:
 
 IndriBuildIndex query_parameter_file
 
-will generate an index folder which would be used as twitter data indexing.
+This will generate an index folder which would be used as twitter data indexing.
 
 4. please convert twitter data into trectext format as sample in twitter_corpus.
 
 warning: ***.trectext files must be unix format.
 
-
+5. Download Stanford coreNLP and change its folder name to stanford. Copy this folder in the Slug-MovieBot directory.
