@@ -7,7 +7,7 @@ import pandas as pd
 
 def saveCleanTweets(filename, cleanTweets, tweetIds):
     csvFile = filename.split("/csv")
-    csvFile = csvFile[1].split("\\")
+    # csvFile = csvFile[1].split("\\")
     csvFilename = "./data/allTimeMovieTweets/movies-allTime/cleanedCSV/" + csvFile[1]
     dirname = os.path.dirname(csvFilename)
     if not os.path.exists(dirname):
@@ -22,6 +22,7 @@ filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/*.json")
 cjc.convert(filenames)
 
 #to preprocess and clean the tweets
+# dataSets = glob.glob("./data/allTimeMovieTweets/movies-allTime/csv/query-#101dalmatians-2017-05-10-09-43-14.csv")
 dataSets = glob.glob("./data/allTimeMovieTweets/movies-allTime/csv/*.csv")
 print(dataSets)
 num = 0

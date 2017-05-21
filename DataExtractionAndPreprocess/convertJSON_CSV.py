@@ -6,6 +6,7 @@ import pandas as pd
 def convert(filenames):
     num = 0
     for filename in filenames:
+        # print(filename)
         tweetTexts = []
         # tweetTexts.append('text')
         tweetIds = []
@@ -29,7 +30,8 @@ def convert(filenames):
 
 
         #create a csv for the movie and write into csv
-        csvFile = filename.split('/movies-allTime\\')
+        csvFile = filename.split('/movies-allTime') #add \\ at the end of this exp if required
+        # print(csvFile)
         csvFile = csvFile[1].split(".json")
         csvFilename = "./data/allTimeMovieTweets/movies-allTime/csv/" + csvFile[0] + '.csv'
         dirname = os.path.dirname(csvFilename)
