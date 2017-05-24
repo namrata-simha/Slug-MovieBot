@@ -3,6 +3,7 @@ import commands
 import xml.dom.minidom
 from BeautifulSoup import BeautifulSoup
 import re
+from imdb import IMDb
 
 class SlugMovieBot:
 	def __init__(self):
@@ -26,9 +27,43 @@ class SlugMovieBot:
 		"wrtie the result to imdb_index_keywords"
 		pass
 
-	def iMDBIndex(self):
-		"wrtie the result to twitter_index_keywords"
-		pass
+	#def iMDBIndex(self):
+	#	"wrtie the result to twitter_index_keywords"
+	#	pass
+	
+	# This method takes a string as the movie_name and a list of movie_keywords.
+	# A movie_keyword is some information that you want to know about the movie.
+	# It returns an array with answers to the data requested in movie_keywords.
+	# Valid options in the list of movie_keywords are: director, runtime, actors, 
+	# year released, film rating, imdb rating, writers, languages, plot, plot outline,
+	# producers, production companies, and distributors. If an invalid movie_keyword 
+	# is provided, then None is inserted into the returned array for that value.
+	def imdbIndex(movie_name, movie_keywords):
+		imdbAccess = IMDb()
+		s_result = ia.search_movie(movie_name)
+		if not s_result:
+			return None
+		movie = s_result[0]
+		imdbAccess.update(movie)
+		options = {'director': movie['director'][0], 'runtime': movie['runtime'][0], 'actors': getData(movie, 'cast'), 
+				'year released': movie['year'], 'film rating': movie['mpaa'], 'imdb rating': movie['rating'], 
+				'writers': getData(movie, 'writer'), 'languages': getData(movie, 'languages'), 'plot': getData(movie, 'plot'), 
+				'plot outline': movie['plot outline'], 'producers': getData(movie, 'producer'), 
+				'production companies': getData(movie, 'production companies'), 'distributors': getData(movie, 'distributors')}
+		retrieved_information = []
+		for keyword in movie_keywords:
+			if keyword in options.keys():
+				retrieved_information.append(options[keyword])
+			else:
+				retrieved_information.append(None)
+		return retrieved_information
+	
+	# Returns imdb data as a readable string for person objects, company objects, etc.
+	def getData(movie, option):
+		total_data = ''
+		for data in movie[option]:
+			total_data += str(data) + ', '
+		return total_data
 
 	# retrieve a piece of twitter. 
 	# twitter_index_keywords is the input
