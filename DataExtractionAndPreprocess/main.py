@@ -6,10 +6,13 @@ import glob
 import os
 import pandas as pd
 
+# filePath = "./data/allTimeMovieTweets/movies-allTime/"
+filePath = "./data/tweets/"
+
 def saveCleanTweets(filename, cleanTweets, tweetIds):
     csvFile = filename.split("/csv")
     # csvFile = csvFile[1].split("\\")
-    csvFilename = "./data/allTimeMovieTweets/movies-allTime/cleanedCSV/" + csvFile[1]
+    csvFilename = filePath + "cleanedCSV/" + csvFile[1]
     dirname = os.path.dirname(csvFilename)
     if not os.path.exists(dirname):
         os.makedirs(dirname)
@@ -18,13 +21,13 @@ def saveCleanTweets(filename, cleanTweets, tweetIds):
     df.to_csv(csvFilename)
 
 #convert obtained JSON to CSV files.
-# filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/query-#101dalmatians-2017-05-10-09-43-14.json")
-filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/*.json")
-cjc.convert(filenames)
+# filenames = glob.glob(filePath + "query-#101dalmatians-2017-05-10-09-43-14.json")
+filenames = glob.glob(filePath + "*.json")
+cjc.convert(filenames, filePath)
 
 #to preprocess and clean the tweets
-# dataSets = glob.glob("./data/allTimeMovieTweets/movies-allTime/csv/query-#101dalmatians-2017-05-10-09-43-14.csv")
-dataSets = glob.glob("./data/allTimeMovieTweets/movies-allTime/csv/*.csv")
+# dataSets = glob.glob(filePath + "csv/query-#101dalmatians-2017-05-10-09-43-14.csv")
+dataSets = glob.glob(filePath + "csv/*.csv")
 print(dataSets)
 num = 0
 for dataSet in dataSets:
@@ -36,6 +39,6 @@ for dataSet in dataSets:
 
 #convert obtained cleaned CSV to XML files.
 # listOfMovies = []
-# filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/cleanedCSV/query-#101dalmatians-2017-05-10-09-43-14.csv")
-filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/cleanedCSV/*.csv")
+# filenames = glob.glob(filePath + "cleanedCSV/query-#101dalmatians-2017-05-10-09-43-14.csv")
+filenames = glob.glob(filePath + "cleanedCSV/*.csv")
 ccx.convert(filenames)

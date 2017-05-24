@@ -9,6 +9,8 @@ def preprocess(Data):
     x = fileread[['text']].values.tolist()
     t = fileread[['tweet_id']].values.tolist()
 
+    # print(x)
+
     # Regex to remove HTML tags
     HTMLreg = re.compile(r'<[^>]+>')
     # Regex to remove URLS
@@ -29,7 +31,7 @@ def preprocess(Data):
         [tweetID] = t[i]
         if re.search(RETWEETreg, tweet):
             # print(tweet)
-            break
+            continue
         tweet = re.sub(HTMLreg, '', tweet)  # removing HTML tags
         tweet = re.sub(URLreg, '', tweet)  # removing URLs
         tweet = re.sub(HANDLEreg, '', tweet)  # removing @ from twitter handles
@@ -39,6 +41,7 @@ def preprocess(Data):
         tweet = tweet.strip(' ').lstrip(' ')  # removing extra spaces left behind
         cleanTweets.append(tweet)
         tweetIds.append(tweetID)
+    # print(cleanTweets)
     return cleanTweets, tweetIds
 
 #test local - only run the preprocess to see what it does

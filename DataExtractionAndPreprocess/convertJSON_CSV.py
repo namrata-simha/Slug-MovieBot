@@ -3,7 +3,7 @@ import csv
 import os
 import pandas as pd
 
-def convert(filenames):
+def convert(filenames, filePath):
     num = 0
     for filename in filenames:
         # print(filename)
@@ -30,16 +30,16 @@ def convert(filenames):
 
 
         #create a csv for the movie and write into csv
-        csvFile = filename.split('/movies-allTime') #add \\ at the end of this exp if required
-        # print(csvFile)
+        # csvFile = filename.split('/movies-allTime') #add \\ at the end of this exp if required
+        csvFile = filename.split('/tweets')
+        print(csvFile)
         csvFile = csvFile[1].split(".json")
-        csvFilename = "./data/allTimeMovieTweets/movies-allTime/csv/" + csvFile[0] + '.csv'
+        csvFilename = filePath + "csv/" + csvFile[0] + '.csv'
         dirname = os.path.dirname(csvFilename)
         if not os.path.exists(dirname):
             os.makedirs(dirname)
 
-        raw_data = {'tweet_id': tweetIds,
-                    'text': tweetTexts}
+        raw_data = {'tweet_id': tweetIds,'text': tweetTexts}
         df = pd.DataFrame(raw_data, columns=['tweet_id', 'text'])
         df.to_csv(csvFilename)
         # with open(csvFilename, 'rb') as csvfile:

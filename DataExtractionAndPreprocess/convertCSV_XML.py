@@ -8,7 +8,7 @@ def convert(filenames):
     DOCNO = E.DOCNO
     TEXT = E.TEXT
 
-    f = open('tweets.xml', 'w')
+    f = open("./data/tweets.xml", 'w')
     for filename in filenames:
         with open(filename, 'rb') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
