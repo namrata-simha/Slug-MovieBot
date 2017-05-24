@@ -1,4 +1,5 @@
 import convertJSON_CSV as cjc
+import convertCSV_XML as ccx
 import preprocess as pp
 import csv
 import glob
@@ -16,7 +17,7 @@ def saveCleanTweets(filename, cleanTweets, tweetIds):
     df = pd.DataFrame(raw_data, columns=['tweet_id', 'text'])
     df.to_csv(csvFilename)
 
-#convert obtained JSON to CSV files. Can skip this step if done once before.
+#convert obtained JSON to CSV files.
 # filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/query-#101dalmatians-2017-05-10-09-43-14.json")
 filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/*.json")
 cjc.convert(filenames)
@@ -32,3 +33,9 @@ for dataSet in dataSets:
     print ("Preprocessing " + str(num * 100 / len(dataSets)) + "% complete")
     # print (cleanTweets)
     saveCleanTweets(dataSet, cleanTweets, tweetIds)
+
+#convert obtained cleaned CSV to XML files.
+# listOfMovies = []
+# filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/cleanedCSV/query-#101dalmatians-2017-05-10-09-43-14.csv")
+filenames = glob.glob("./data/allTimeMovieTweets/movies-allTime/cleanedCSV/*.csv")
+ccx.convert(filenames)
