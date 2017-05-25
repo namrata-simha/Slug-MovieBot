@@ -2,7 +2,7 @@
 <index>./index</index>
 <query>
 <number>1</number>
-<text>Avatar
+<text>#combine( forrest gump Tom Hanks )
 </text>
 </query>
 <memory>1G</memory>
