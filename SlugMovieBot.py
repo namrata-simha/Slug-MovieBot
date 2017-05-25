@@ -64,6 +64,33 @@ class SlugMovieBot:
 		for data in movie[option]:
 			total_data += str(data) + ', '
 		return total_data
+	
+	# Takes a movie name and option number from 1-15 and outputs the requested data.
+	def imdbData(movie_name, id):
+	    if ((id < 1) or (id > 15)):
+	        return None
+	    imdbAccess = IMDb()
+	    s_result = ia.search_movie(movie_name)
+	    if not s_result:
+	        return None
+	    movie = s_result[0]
+	    imdbAccess.update(movie, 'all')
+	    options = {1: getData(movie, 'genres'),
+	               2: getData(movie, 'cast'),
+	               3: movie['director'][0],
+	               4: getData(movie, 'writer'),
+	               5: movie['mpaa'],
+	               6: movie['year'],
+	               7: movie['runtime'][0],
+	               8: getData(movie, 'plot'),
+	               9: getData(movie, 'country codes'),
+	               10: 'test quotes',
+	               11: getData(movie, 'production companies'),
+	               12: movie['trivia'][0],
+	               13: getData(movie, 'languages'),
+	               14: movie['rating'],
+	               15: getData(movie, 'producer')}
+	    return options[id]
 
 	# retrieve a piece of twitter. 
 	# twitter_index_keywords is the input
