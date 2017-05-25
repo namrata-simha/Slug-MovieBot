@@ -74,6 +74,13 @@ class SlugMovieBot:
 	               15: getData(movie, 'producer')}
 	    return options[id]
 
+	# Returns imdb data as a readable string for person objects, company objects, etc.
+	def getData(movie, option):
+		total_data = ''
+		for data in movie[option]:
+			total_data += str(data) + ', '
+		return total_data
+
 	# retrieve a piece of twitter. 
 	# twitter_index_keywords is the input
 	def tweetSelection(self, very_pos_list, pos_list, very_neg_list, neg_list, neu_list):    
