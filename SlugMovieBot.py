@@ -28,38 +28,58 @@ class SlugMovieBot:
 	def imdbIndex(self, movie_name, idx):
 		return "Tom Hanks"
 
-	def imdbData(self, movie_name, id):
-	    if ((id < 1) or (id > 15)):
+	# Takes a movie name and option number from 1-15 and outputs the requested data.
+	def imdbData(self, movie_name, idx):
+	    if ((idx < 1) or (idx > 15)):
 	        return None
 	    imdbAccess = IMDb()
-	    s_result = imdbAccess.search_movie(movie_name)
+	    s_result = ia.search_movie(movie_name)
 	    if not s_result:
 	        return None
 	    movie = s_result[0]
-	    imdbAccess.update(movie, 'all')
+	    imdbAccess.update(movie)
+	    if (idx == 10):
+	        imdbAccess.update(movie, 'quotes')
+	    if (idx == 12):
+	        imdbAccess.update(movie, 'trivia')
 	    options = {1: self.getData(movie, 'genres'),
 	               2: self.getData(movie, 'cast'),
-	               3: movie['director'][0],
+	               3: self.getData(movie, 'director'),
 	               4: self.getData(movie, 'writer'),
-	               5: movie['mpaa'],
-	               6: movie['year'],
-	               7: movie['runtime'][0],
+	               5: movie.get('mpaa'),
+	               6: movie.get('year'),
+	               7: self.getData(movie, 'runtime'),
 	               8: self.getData(movie, 'plot'),
 	               9: self.getData(movie, 'country codes'),
-	               10: 'test quotes',
+	               10: self.getRandomData(movie, 'quotes'),
 	               11: self.getData(movie, 'production companies'),
-	               12: movie['trivia'][0],
+	               12: self.getRandomData(movie, 'trivia'),
 	               13: self.getData(movie, 'languages'),
-	               14: movie['rating'],
+	               14: movie.get('rating'),
 	               15: self.getData(movie, 'producer')}
-	    return options[id]
-
+	    return options[idx]
+	    
+	
 	# Returns imdb data as a readable string for person objects, company objects, etc.
 	def getData(movie, option):
-		total_data = ''
-		for data in movie[option]:
-			total_data += str(data) + ', '
-		return total_data
+	    output = movie.get(option)
+	    if output is None:
+	        return None
+	    total_data = ''
+	    for data in output[:-1]:
+	        total_data += str(data) + ', '
+	    if not total_data:
+	        total_data += str(output[-1])
+	    else:
+	        total_data += 'and ' + str(output[-1])
+	    return total_data
+	
+	def getRandomData(movie, option):
+	    output = movie.get(option)
+	    if output is None:
+	        return None
+	    random_data = random.choice(output)
+	    return random_data
 
 	# retrieve a piece of twitter. 
 	# twitter_index_keywords is the input
