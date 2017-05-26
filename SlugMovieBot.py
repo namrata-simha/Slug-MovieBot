@@ -108,17 +108,7 @@ class SlugMovieBot:
             else:
                 neu_list.append(sentiment_result[i-1])    
         # step 3: return a twitter according some kind of scoring rules.
-        """
-        print "----------------------twitter list to selection module.------------------------"
-        print very_pos_list
-        print pos_list
-        print very_neg_list
-        print neg_list
-        print neu_list
-        print "-------------------------------------------------------------------------------"
-        """
         return self.tweetSelection(very_pos_list, pos_list, very_neg_list, neg_list, neu_list)
-        #return "a twitter"
 
     # used to detect movie name in Q.    
     def movie_name_detection(self, question, idx):
@@ -189,16 +179,15 @@ class SlugMovieBot:
         # step 2: retrieve movie name from user input
         self.movie_name = self.movie_name_detection(question_from_user, idx-1)
         # step 3: get imdb information.
-	imdbOutput = imdbData(self.movie_name, idx)
-	if imdbOutput is None:
-		imdbOutput = 'Unfortunately, I could not find the answer to that question.'
-        self.twitter_index_keywords = imdbOutput
+        imdbOutput = imdbData(self.movie_name, idx)
+        if imdbOutput is None:
+            self.twitter_index_keywords = ""
 		#"***********" + self.twitter_index_keywords +"\n\n\n"
         self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
         # step 4: get twitter.
         twitter = self.TwitterIndex()
         # step 5: return 
-        print "A: " + twitter
+        print "A: " + imdbOutput +".\n" + twitter
 
 if __name__=="__main__":
     moviebot = SlugMovieBot()
