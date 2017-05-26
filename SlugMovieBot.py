@@ -26,9 +26,6 @@ class SlugMovieBot:
         self.twitter_index_keywords = "" #used by TwitterIndex, iMDBIndex should provide this parameter.
         #@ twitter classification according to sentiment analysis.
 
-    def imdbIndex(self, movie_name, idx):
-        return "Tom Hanks"
-
     # retrieve a piece of twitter. 
     # twitter_index_keywords is the input
     def tweetSelection(self, very_pos_list, pos_list, very_neg_list, neg_list, neu_list):    
