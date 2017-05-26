@@ -1,0 +1,53 @@
+Q: who are the actors in Zootopia?
+2017-05-26 07:51:03,301 ERROR [imdbpy.parser.http.domparser] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/utils.py:554: DOMHTMLAiringParser: caught exception postprocessing data
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/imdb/parser/http/utils.py", line 551, in parse
+    data = self.postprocess_data(data)
+  File "/usr/local/lib/python2.7/dist-packages/imdb/parser/http/movieParser.py", line 1823, in postprocess_data
+    seriesID = analyze_imdbid(data['series id'])
+KeyError: 'series id'
+2017-05-26 07:51:04,390 WARNING [imdbpy.parser.http] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/__init__.py:632: amazon review no longer available
+2017-05-26 07:51:07,413 WARNING [imdbpy.parser.http] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/__init__.py:592: dvd information no longer available
+2017-05-26 07:51:07,640 WARNING [imdbpy.parser.http.urlopener] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/__init__.py:248: 404 code returned for //akas.imdb.com/title/tt2948356/episodes: Not Found (headers: Date: Thu, 25 May 2017 23:51:07 GMT
+Server: Server
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: frame-ancestors 'self' imdb.com *.imdb.com *.media-imdb.com withoutabox.com *.withoutabox.com amazon.com *.amazon.com amazon.co.uk *.amazon.co.uk amazon.de *.amazon.de translate.google.com images.google.com www.google.com www.google.co.uk search.aol.com bing.com www.bing.com
+Ad-Unit: imdb.standard.title
+Entity-Id: tt2948356
+Content-Type: text/html;charset=UTF-8
+Content-Language: en-US
+Vary: Accept-Encoding,User-Agent
+P3P: policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Connection: close
+)
+2017-05-26 07:51:18,135 WARNING [imdbpy.parser.http] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/__init__.py:642: merchandising links no longer available
+2017-05-26 07:51:20,563 WARNING [imdbpy.parser.http.urlopener] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/__init__.py:248: 404 code returned for //akas.imdb.com/title/tt2948356/newsgroupreviews: Not Found (headers: Date: Thu, 25 May 2017 23:51:20 GMT
+Server: HTTPDaemon
+Cache-Control: private
+Content-Type: text/html; charset=iso-8859-1
+Set-Cookie: cache=BCYixSWzXAgYkIKjGZdmB3PAVDN4wC37gS6xQfRqk_cOeADS8PYnfpXSJ0J73laYu7IAh5y-C9XRtqaUPFiB7-bHmGYa3ZuFQTDhAh-epg9TmDs;path=/;domain=.imdb.com
+Set-Cookie: uu=BCYqmFRPfZ0MWVRD8SaPDShzCzR4wC37gS6xQfRqk_cOeABCMXeWyFQYM138mc4qQq2snX9SMDPq5by8YiGPT3w3NIKq66omTcHymcu-7I4IdMKgd5NMPagVHme_goIHOKisSLoj0lbleo2L9MX6_SFIXoczfU6D4KOc3K59gLpmcmCDBtN-ayZxvOSaXEm8B12ppGiwFdlGZUws8nMiM61vnwrKkeUk898qLtA2TorO5__n6HI2QdTiMj-UOgGSRfDFKzRmBn0b2ul85s9UI9fzwDrSd5xIWm2ANllZ7RB92kKsgx686PuE6nRrVs9SfYdn47J029-Zr5PXIUl6i5hFFQ;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+Set-Cookie: cache=BCYs4oQgpnbPzLr5heMGbRpJqzV4wC37gS6xQfRqk_cOeADurKpxjimqsTrqEaJV_1kAbIKzYe__SHa-a5WcqUEoDGKB5g0N2kSKTecX9q0YBKwmaHvtattjzmh9QBxEnUosGrSCF1Uqu16WxerYPqmxYj58UpXAuimyTcC8AvY5h1gt_1kFmwutbUMdQkBEcLoR;path=/;domain=.imdb.com
+Set-Cookie: cache=BCYg-KdTLxnHsZ47gsoFPDfcnzZ4wC37gS6xQfRqk_cOeABa14X66l3Gn7g5kPitSUGheNgQmvnOlZ3U1SJ2P8GO9IVpqr8F2dZxqGkk2W2021c;path=/;domain=.imdb.com
+Set-Cookie: uu=BCYoOZiW_VTYtwVzs26bWfWyLTd4wC37gS6xQfRqk_cOeACKLwTmHlf4Auuxjr-btPnJ8Zu_2eZOzW12QfPfNkr27J-QZe9JIiKHUVa2xdcrGe217zjEar3kBqEsuW6rZuOHsrE3zozYfMzEu2Zo3IRPayn7UTTJNPbm8btq13Ke4Xqn-0x8T-yQE4ldSgASrUmKhRv_p_Yy8hMSIssWVn0L2BruIz-oGnPsIZNQOHWnbbNimYS9_uSVmHKywQ8D2rNFrmYl024txcrG8ulgUwUvwEkr2SzcmnjMqvDzsapWf0QiXuDaEscVXBt4O7yAmt6l6zc8JbQ5kXxQ9l0nD5iUOQ;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+Set-Cookie: cache=BCYhPM3L5JqChvdtoTkU8HXrzzh4wC37gS6xQfRqk_cOeABY1G9PtP5y_Ej3LLkNDqIraBwSjXLpOxse16JJ4oNVU5Obbi-1VBZHU1wfd3I6tSbBoAKXj4xKrsxjzkpGcOTQwEa5GABp-SH8GtI6XNjlMOUF7ztUXKN2cQtzWdDDz-GecvqKvEq3JtK4hH_a0GQa;path=/;domain=.imdb.com
+Vary: Accept-Encoding,User-Agent
+P3P: policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+Connection: close
+)
+2017-05-26 07:51:30,678 ERROR [imdbpy.parser.http.domparser] /usr/local/lib/python2.7/dist-packages/imdb/parser/http/utils.py:554: DOMHTMLAiringParser: caught exception postprocessing data
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/imdb/parser/http/utils.py", line 551, in parse
+    data = self.postprocess_data(data)
+  File "/usr/local/lib/python2.7/dist-packages/imdb/parser/http/movieParser.py", line 1823, in postprocess_data
+    seriesID = analyze_imdbid(data['series id'])
+KeyError: 'series id'
+Traceback (most recent call last):
+  File "SlugMovieBot.py", line 257, in <module>
+    moviebot.ConversationStrategy()
+  File "SlugMovieBot.py", line 247, in ConversationStrategy
+    self.twitter_index_keywords = self.imdbData(self.movie_name, idx)
+  File "SlugMovieBot.py", line 60, in imdbData
+    options = {1: getData(movie, 'genres'),
+NameError: global name 'getData' is not defined
+
