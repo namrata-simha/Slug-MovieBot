@@ -37,21 +37,21 @@ class SlugMovieBot:
 	        return None
 	    movie = s_result[0]
 	    imdbAccess.update(movie, 'all')
-	    options = {1: getData(movie, 'genres'),
-	               2: getData(movie, 'cast'),
+	    options = {1: self.getData(movie, 'genres'),
+	               2: self.getData(movie, 'cast'),
 	               3: movie['director'][0],
-	               4: getData(movie, 'writer'),
+	               4: self.getData(movie, 'writer'),
 	               5: movie['mpaa'],
 	               6: movie['year'],
 	               7: movie['runtime'][0],
-	               8: getData(movie, 'plot'),
-	               9: getData(movie, 'country codes'),
+	               8: self.getData(movie, 'plot'),
+	               9: self.getData(movie, 'country codes'),
 	               10: 'test quotes',
-	               11: getData(movie, 'production companies'),
+	               11: self.getData(movie, 'production companies'),
 	               12: movie['trivia'][0],
-	               13: getData(movie, 'languages'),
+	               13: self.getData(movie, 'languages'),
 	               14: movie['rating'],
-	               15: getData(movie, 'producer')}
+	               15: self.getData(movie, 'producer')}
 	    return options[id]
 
 	# Returns imdb data as a readable string for person objects, company objects, etc.
@@ -217,21 +217,21 @@ class SlugMovieBot:
 		return idx+1
 
 	def ConversationStrategy(self):
-		# step 0: get user input
+		"""# step 0: get user input
 		question_from_user = raw_input("Q: ").lower()
 		# step 1: find similar question from corpus
 		idx = self.qsim(question_from_user)
 		# step 2: retrieve movie name from user input
 		self.movie_name = self.movie_name_detection(question_from_user, idx-1)
-		# step 3: get imdb information.
-		self.twitter_index_keywords = self.imdbData(self.movie_name, idx)
-		self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
+		# step 3: get imdb information."""
+		self.twitter_index_keywords = self.imdbData("Forrest Gump", 2)
+		print self.twitter_index_keywords
+		"""self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
 		# step 4: get twitter.
 		twitter = self.TwitterIndex()
 		# step 5: return 
-		print "A: " + twitter
+		print "A: " + twitter"""
 
 if __name__=="__main__":
 	moviebot = SlugMovieBot()
-	while True:
-		moviebot.ConversationStrategy()
+	moviebot.ConversationStrategy()
