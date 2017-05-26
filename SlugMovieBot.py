@@ -74,13 +74,13 @@ class SlugMovieBot:
     	d = {}
     	for i in range(0, len(target_list)):
         	if i == 0:
-            	d["string{0}".format(matches[i])] = []
+            		d["string{0}".format(matches[i])] = []
         	if matches[i] == prev:
-            	d["string{0}".format(matches[i])].append(target_list[i])
+            		d["string{0}".format(matches[i])].append(target_list[i])
         	else:
-            	d["string{0}".format(matches[i])] = []
-            	prev = matches[i]
-            	d["string{0}".format(matches[i])].append(target_list[i])
+            		d["string{0}".format(matches[i])] = []
+            		prev = matches[i]
+            		d["string{0}".format(matches[i])].append(target_list[i])
 
     	appendCount = 0
 
