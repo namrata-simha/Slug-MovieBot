@@ -6,6 +6,7 @@ from imdb import IMDb
 from IMDbPY import imdbData
 from qlists import qlist
 import re
+import grammar_check
 
 class SlugMovieBot:
     def __init__(self):
@@ -49,11 +50,55 @@ class SlugMovieBot:
         if len(target_list) <= 2:
             print 'Not enough tweets to evaluate'
             return        
-        sortedtweets = sorted(target_list, key=len)
+        
+	sortedtweets = sortTweets(target_list)
+	
+	#sortedtweets = sorted(target_list, key=len)
         tweet1 = sortedtweets[-1] #Longest tweet    
         tweet2 = sortedtweets[-2]
         tweet3 = sortedtweets[-3]        
         return tweet1
+	
+    def sortTweets(target_list):
+        print(target_list)
+        tool = grammar_check.LanguageTool('en-US')
+        matches = []  # holds a count of the number of grammatical errors in the sentence
+    	for tweet in target_list:
+        	matches.append(len(tool.check(tweet)))
+    	grammar_checked = zip(matches, target_list)
+    	grammar_checked.sort()
+	    matches, target_list = zip(*grammar_checked)
+    	sortedtweets = []
+    	prev = 0
+
+    	d = {}
+    	for i in range(0, len(target_list)):
+        	if i == 0:
+            	d["string{0}".format(matches[i])] = []
+        	if matches[i] == prev:
+            	d["string{0}".format(matches[i])].append(target_list[i])
+        	else:
+            	d["string{0}".format(matches[i])] = []
+            	prev = matches[i]
+            	d["string{0}".format(matches[i])].append(target_list[i])
+
+    	appendCount = 0
+
+    	for x in list(set(matches)):
+        	temp = sorted(d["string{0}".format(x)], key=len)
+        	d["string{0}".format(x)] = temp
+
+    	for x in list(set(matches)):
+        	for y in d["string{0}".format(x)]:
+            	if appendCount < 3:
+                	sortedtweets.append(y)
+                	appendCount += 1
+            	else:
+                	break
+        	if appendCount > 2:
+            		break
+
+    	return sortedtweets
 
     def TwitterIndex(self):
         # step 0: initial information declaration.
