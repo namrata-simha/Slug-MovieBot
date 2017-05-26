@@ -61,7 +61,7 @@ class SlugMovieBot:
 	    
 	
 	# Returns imdb data as a readable string for person objects, company objects, etc.
-	def getData(movie, option):
+	def getData(self, movie, option):
 	    output = movie.get(option)
 	    if output is None:
 	        return None
@@ -74,7 +74,7 @@ class SlugMovieBot:
 	        total_data += 'and ' + str(output[-1])
 	    return total_data
 	
-	def getRandomData(movie, option):
+	def getRandomData(self, movie, option):
 	    output = movie.get(option)
 	    if output is None:
 	        return None
@@ -237,21 +237,25 @@ class SlugMovieBot:
 		return idx+1
 
 	def ConversationStrategy(self):
-		"""# step 0: get user input
+		# step 0: get user input
 		question_from_user = raw_input("Q: ").lower()
 		# step 1: find similar question from corpus
 		idx = self.qsim(question_from_user)
+		print "idx = " + str(idx)
 		# step 2: retrieve movie name from user input
 		self.movie_name = self.movie_name_detection(question_from_user, idx-1)
-		# step 3: get imdb information."""
-		self.twitter_index_keywords = self.imdbData("Forrest Gump", 2)
+		print self.movie_name
+		# step 3: get imdb information.
+		self.twitter_index_keywords = self.imdbData(self.movie_name, idx)
 		print self.twitter_index_keywords
-		"""self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
+		
+		self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
 		# step 4: get twitter.
 		twitter = self.TwitterIndex()
 		# step 5: return 
-		print "A: " + twitter"""
+		print "A: " + twitter
 
 if __name__=="__main__":
 	moviebot = SlugMovieBot()
-	moviebot.ConversationStrategy()
+	while True:
+		moviebot.ConversationStrategy()
