@@ -33,7 +33,7 @@ class SlugMovieBot:
 	    if ((idx < 1) or (idx > 15)):
 	        return None
 	    imdbAccess = IMDb()
-	    s_result = ia.search_movie(movie_name)
+	    s_result = imdbAccess.search_movie(movie_name)
 	    if not s_result:
 	        return None
 	    movie = s_result[0]
