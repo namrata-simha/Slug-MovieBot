@@ -189,14 +189,11 @@ class SlugMovieBot:
         question_from_user = raw_input("Q: ").lower()
         # step 1: find similar question from corpus
         idx = self.qsim(question_from_user)
-        print "idx = " + str(idx)
         # step 2: retrieve movie name from user input
         self.movie_name = self.movie_name_detection(question_from_user, idx-1)
-        print self.movie_name
         # step 3: get imdb information.
-        self.twitter_index_keywords = imdbData(self.movie_name, idx)
-        print self.twitter_index_keywords
-        
+        self.twitter_index_keywords = imdbData(self.movie_name, idx).split(",")[0]
+		#"***********" + self.twitter_index_keywords +"\n\n\n"
         self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
         # step 4: get twitter.
         twitter = self.TwitterIndex()
