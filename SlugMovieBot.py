@@ -189,7 +189,10 @@ class SlugMovieBot:
         # step 2: retrieve movie name from user input
         self.movie_name = self.movie_name_detection(question_from_user, idx-1)
         # step 3: get imdb information.
-        self.twitter_index_keywords = imdbData(self.movie_name, idx).split(",")[0]
+	imdbOutput = imdbData(self.movie_name, idx)
+	if imdbOutput is None:
+		imdbOutput = 'Unfortunately, I could not find the answer to that question.'
+        self.twitter_index_keywords = imdbOutput
 		#"***********" + self.twitter_index_keywords +"\n\n\n"
         self.twitter_index_keywords = self.movie_name + " " + self.twitter_index_keywords
         # step 4: get twitter.
