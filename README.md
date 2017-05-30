@@ -32,6 +32,8 @@ Download Stanford coreNLP and change its folder name to stanford. Copy this fold
 
 >6. LanguageTool Grammar-check: 
 
-Install LanguageTool (https://www.languagetool.org/) and install the grammar-check package (https://pypi.python.org/pypi/grammar-check/1.3.1): pip install --user --upgrade grammar-check
+Install LanguageTool (https://www.languagetool.org/) and install the grammar-check package (https://pypi.python.org/pypi/grammar-check/1.3.1):
+
+pip install --user --upgrade grammar-check
 
 >7. Run [SlugMovieBot.py](SlugMovieBot.py)
