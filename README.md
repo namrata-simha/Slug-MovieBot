@@ -20,6 +20,8 @@ pip install beautifulsoup
 
 >3. In the Slug-MovieBot directory run:
 
+rm -rf index (comment: if you want to update the twitter dataset, you should first remove index folder, then generate it again. If this is the first time without index folder, no need to run this.)
+
 IndriBuildIndex query_parameter_file
 
 This will generate an index folder which would be used as twitter data indexing.
