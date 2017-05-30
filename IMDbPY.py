@@ -137,9 +137,9 @@ def imdbData(movie_name, idx):
                13: getData(movie, 'languages'),
                14: movie.get('rating'),
                15: getData(movie, 'producer')}
-    for i in range(1, 16):
+    #for i in range(1, 16):
         #print options[i]
-        print imdbOutput(movie_name, i, options[i])
+        #print imdbOutput(movie_name, i, options[i])
     return imdbOutput(movie_name, idx, options[idx])
 
 # Combine imdb data with templated response.
