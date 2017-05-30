@@ -123,7 +123,7 @@ def imdbData(movie_name, idx):
     if (idx == 12):
         imdbAccess.update(movie, 'trivia')
     options = {1: getData(movie, 'genres'),
-               2: getData(movie, 'cast'),
+               2: getDataLimited(movie, 'cast', 3),
                3: getData(movie, 'director'),
                4: getData(movie, 'writer'),
                5: movie.get('mpaa'),
@@ -137,10 +137,36 @@ def imdbData(movie_name, idx):
                13: getData(movie, 'languages'),
                14: movie.get('rating'),
                15: getData(movie, 'producer')}
-    #for i in range(1, 16):
-    #    print options[i]
-    return options[idx]
-    
+    for i in range(1, 16):
+        #print options[i]
+        print imdbOutput(movie_name, i, options[i])
+    return imdbOutput(movie_name, idx, options[idx])
+
+# Combine imdb data with templated response.
+def imdbOutput(movie_name, idx, imdbResponse):
+    if imdbResponse is None:
+        return 'Unfortunately, I could not find the answer to that question.'
+    imdb_output = ''
+    try: 
+        template = {1: movie_name + ' is categorized as ' + imdbResponse.__str__() + '.',
+                    2: 'The main actors are ' + imdbResponse.__str__() + '.',
+                    3: 'The director is ' + imdbResponse.__str__() + '.',
+                    4: 'The writers are ' + imdbResponse.__str__() + '.',
+                    5: movie_name + ' is ' + imdbResponse.__str__() + '.',
+                    6: movie_name + ' was made in the year ' + imdbResponse.__str__() + '.',
+                    7: 'The runtime is ' + imdbResponse.__str__() + ' minutes.',
+                    8: 'The plot is as follows: ' + imdbResponse.__str__(),
+                    9: movie_name + ' was made in the ' + imdbResponse.__str__().upper() + '.',
+                    10: 'A quote from ' + movie_name + ' is as follows: ' + imdbResponse.__str__(),
+                    11: 'The production company is ' + imdbResponse.__str__() + '.',
+                    12: 'A bit of trivia from ' + movie_name + ' is as follows: ' + imdbResponse.__str__(),
+                    13: movie_name + ' is available in the following languages: ' + imdbResponse.__str__() + '.',
+                    14: 'The imdb rating is ' + imdbResponse.__str__() + '/10.',
+                    15: 'The producers are: ' + imdbResponse.__str__() + '.'}
+        imdb_output = template[idx]
+    except:
+        imdb_output = imdbResponse
+    return imdb_output
 
 # Returns imdb data as a readable string for person objects, company objects, etc.
 def getData(movie, option):
@@ -148,20 +174,41 @@ def getData(movie, option):
     if output is None:
         return None
     total_data = ''
-    for data in output[:-1]:
-        total_data += str(data) + ', '
-    if not total_data:
-        total_data += str(output[-1])
-    else:
-        total_data += 'and ' + str(output[-1])
+    try: 
+        for data in output[:-1]:
+            total_data += str(data) + ', '
+        if not total_data:
+            total_data += str(output[-1])
+        else:
+            total_data += 'and ' + str(output[-1])
+    except:
+        total_data = output
     return total_data
 
+# Take a random choice from the imdb data.
 def getRandomData(movie, option):
     output = movie.get(option)
     if output is None:
         return None
     random_data = random.choice(output)
     return random_data
+
+# Take only a number amount of the imdb output.
+def getDataLimited(movie, option, number):
+    output = movie.get(option)
+    if output is None:
+        return None
+    total_data = ''
+    try: 
+        for i in range(0, number - 1):
+            total_data += str(output[i]) + ', '
+        if not total_data:
+            total_data += str(output[-1])
+        else:
+            total_data += 'and ' + str(output[number - 1])
+    except:
+        total_data = output
+    return total_data
 
 def processQuery(option, movie):
     options = [getDirector(movie), getRuntime(movie), getActors(movie), getYear(movie), getFilmRating(movie), getRating(movie)]
@@ -184,7 +231,10 @@ if __name__ == '__main__':
     #    print data
     
     #print imdbData('Transformers', 1)
-    print imdbData('Zootopia', 12)
+    #print imdbData('Zootopia', 12)
+    print imdbData('Forrest Gump', 1)
+    #print imdbData('Revenge of the Sith', 1)
+    #print imdbData('The Secret Life of Pets', 1)
 
     #the_matrix = ia.get_movie('0133093')
     #print the_matrix['director']
