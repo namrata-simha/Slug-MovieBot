@@ -20,7 +20,7 @@ IndriBuildIndex query_parameter_file
 
 This will generate an index folder which would be used as twitter data indexing.
 
->4. ##Setting up the twitter corpus:## 
+>4. Setting up the twitter corpus: 
 
 Change "filePath" in [./DataExtractionAndPreprocess/main.py](./DataExtractionAndPreprocess/main.py) to the path with your extracted tweets, stored in .json files. Run [./DataExtractionAndPreprocess/main.py](./DataExtractionAndPreprocess/main.py) to obtain tweets.xml. Convert this to a .trectext file and store in [./twitter_corpus](./twitter_corpus).
 
