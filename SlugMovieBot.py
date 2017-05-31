@@ -185,7 +185,7 @@ class SlugMovieBot:
         # step 4: get twitter.
         twitter = self.TwitterIndex()
         # step 5: return 
-        print "A: " + imdbOutput +".\n" + twitter
+        print "A: " + imdbOutput + "\n" + twitter
 
 if __name__=="__main__":
     moviebot = SlugMovieBot()
