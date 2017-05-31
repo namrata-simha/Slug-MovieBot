@@ -32,39 +32,39 @@ class SlugMovieBot:
     def tweetSelection(self, very_pos_list, pos_list, very_neg_list, neg_list, neu_list):    
         #Deal with small lists
         if len(very_pos_list) <= 2:
-            very_pos_list = pos_list
+            very_pos_list = very_pos_list + pos_list
         
         if len(very_neg_list) <= 2:
-            very_neg_list = neg_list              
+            very_neg_list = very_neg_list + neg_list              
         #Search for very positive or negative first
         target_list = []
-        if len(pos_list) >= len(neg_list):
-            target_list = very_pos_list
 
-        if len(neg_list) > len(pos_list):
+        if len(very_pos_list) >= len(very_neg_list):
+            target_list = very_pos_list
+        else:
             target_list = very_neg_list           
         #Use neutral tweets as last resort       
-        if len(target_list) <= 2:
+        if len(target_list) <= 2 and len(neu_list)>0:
             target_list = neu_list        
         
         if len(target_list) <= 2:
-            print 'Not enough tweets to evaluate'
-            return        
+            print 'not enough tweets to evaluate'
+            return "not enough tweets to evaluate"     
         
-	sortedtweets = sortTweets(target_list)
+        sortedtweets = sortTweets(target_list)
 	
-	#sortedtweets = sorted(target_list, key=len)
-        tweet1 = sortedtweets[-1] #Longest tweet    
-        tweet2 = sortedtweets[-2]
-        tweet3 = sortedtweets[-3]        
-        return tweet1
+        #sortedtweets = sorted(target_list, key=len)
+        length = 10
+        if len(sortedtweets) < 10:
+            length = len(sortedtweets)
+        tweet_index = 0 - random.randint(0, length)      
+        return sortedtweets[tweet_index]
 	
     def sortTweets(target_list):
-        print(target_list)
         tool = grammar_check.LanguageTool('en-US')
         matches = []  # holds a count of the number of grammatical errors in the sentence
     	for tweet in target_list:
-        	matches.append(len(tool.check(tweet)))
+            matches.append(len(tool.check(tweet)))
     	grammar_checked = zip(matches, target_list)
     	grammar_checked.sort()
 	    matches, target_list = zip(*grammar_checked)
